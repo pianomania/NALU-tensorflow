@@ -11,6 +11,12 @@ numpy 1.14.5<br/>
 
 |op|Static Task|
 |-----|-----|
+|a+b||
+|a-b||
+|a*b||
+|a/b||
+|a^2||
+|sqrt(a)||
 
 - **MNIST Counting**
  
