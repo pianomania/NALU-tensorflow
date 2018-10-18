@@ -9,7 +9,6 @@ numpy 1.14.5<br/>
 # Result
 - **Synthetic Arithmetic Tasks**
 
-|NALU|
 |op|interpolation|exterpolation|
 |-----|-----|-----|
 |a+b| 0.0000008 | 0.0000006 |
