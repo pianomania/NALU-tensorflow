@@ -9,7 +9,7 @@ numpy 1.14.5<br/>
 # Result
 - **Synthetic Arithmetic Tasks**
 
-|op|interpolation|exterpolation|
+|op|interpolation|extrapolation|
 |-----|-----|-----|
 |a+b| 0.0000008 | 0.0000006 |
 |a-b| 0.0000002 | 0.0000006 |
