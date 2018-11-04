@@ -172,21 +172,46 @@ if __name__ == "__main__":
     eps = args.eps
 
 
-    if math_key == "sqrt" or math_key == "square":
-        in_dim = 1
-    else:
-        in_dim = 2 
+    # if math_key == "sqrt" or math_key == "square":
+    #     in_dim = 1
+    # else:
+    #     in_dim = 2 
 
-    if args.model == 'nalu':
-        model = NALU(in_dim, 1, hidden_size, n_stack, eps)
-    elif args.model == 'nac':
-        model = NAC(in_dim, 1, hidden_size, n_stack)
+    # if args.model == 'nalu':
+    #     model = NALU(in_dim, 1, hidden_size, n_stack, eps)
+    # elif args.model == 'nac':
+    #     model = NAC(in_dim, 1, hidden_size, n_stack)
 
-    dataset = arithmetic_dataset(args, (math_key, math_op))
+    # dataset = arithmetic_dataset(args, (math_key, math_op))
 
-    if args.train == True:
+    # if args.train == True:
+    #     train_arithmetic_task(args, model, dataset, (math_key, math_op))
+    # else:
+    #     inter_mse, extra_mse = test_arithmetic_task(args, model, dataset, (math_key, math_op))
+    #     print("Interpolation mse: {0}".format(inter_mse))
+    #     print("extrapolation mse: {0}".format(extra_mse))
+
+    args.model = 'nac'
+
+    for (math_key, math_op) in arithmetics.items():
+            
+        if math_key == "sqrt" or math_key == "square":
+            in_dim = 1
+        else:
+            in_dim = 2 
+
+        if args.model == 'nalu':
+            model = NALU(in_dim, 1, hidden_size, n_stack, eps)
+        elif args.model == 'nac':
+            model = NAC(in_dim, 1, hidden_size, n_stack)
+
+        dataset = arithmetic_dataset(args, (math_key, math_op))
+
+
         train_arithmetic_task(args, model, dataset, (math_key, math_op))
-    else:
         inter_mse, extra_mse = test_arithmetic_task(args, model, dataset, (math_key, math_op))
         print("Interpolation mse: {0}".format(inter_mse))
         print("extrapolation mse: {0}".format(extra_mse))
+
+        with open('result.txt', 'w' if math_key=='add' else 'a') as f:
+            f.write("|{0:7f}|{1:7f}\n".format(inter_mse, extra_mse))
